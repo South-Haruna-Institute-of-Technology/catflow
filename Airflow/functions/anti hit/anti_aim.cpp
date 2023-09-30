@@ -386,7 +386,7 @@ void c_anti_aim::fake()
 
 	if (g_cfg.antihit.random_amount)
 	{
-		math::random_seed(interfaces::global_vars->tick_count+ interfaces::global_vars->tick_count+3351);
+		math::random_seed(interfaces::global_vars->tick_count + interfaces::global_vars->tick_count + interfaces::global_vars->tick_count + 3351);
 		angle = this->fake_side == 1 ? 58 - math::random_int(0, 58) : math::random_int(0, 58);
 	}
 	else
@@ -698,7 +698,7 @@ void c_anti_aim::on_predict_start()
 	{
 		if (g_cfg.antihit.def_pitch && defensive_aa)
 		{
-			math::random_seed(interfaces::global_vars->tick_count+ interfaces::global_vars->tick_count+3351);
+			math::random_seed(interfaces::global_vars->tick_count + interfaces::global_vars->tick_count + interfaces::global_vars->tick_count + 3351);
 			g_ctx.cmd->viewangles.x = g_cfg.antihit.def_aa_mode == 1 ? math::random_float(-89.f, 89.f) : -89.f;
 		}
 		else
@@ -757,7 +757,7 @@ void c_anti_aim::on_predict_start()
 
 	auto jitter_flipper = g_cfg.antihit.random_jitter ? random_flipper : this->flip_jitter;
 
-	math::random_seed(interfaces::global_vars->tick_count+ interfaces::global_vars->tick_count+3351);
+	math::random_seed(interfaces::global_vars->tick_count + interfaces::global_vars->tick_count + interfaces::global_vars->tick_count + 3351);
 
 	switch (g_cfg.antihit.jitter_mode)
 	{
@@ -787,7 +787,7 @@ void c_anti_aim::on_predict_start()
 
 	if (*g_ctx.send_packet)
 	{
-		math::random_seed(interfaces::global_vars->tick_count+ interfaces::global_vars->tick_count+3351);
+		math::random_seed(interfaces::global_vars->tick_count + interfaces::global_vars->tick_count + interfaces::global_vars->tick_count + 3351);
 
 		auto make_random_timer = [&](bool& flipper, int& timer, int min, int max)
 		{
@@ -813,7 +813,7 @@ void c_anti_aim::on_predict_start()
 
 	if (g_cfg.antihit.def_yaw && defensive_aa)
 	{
-		math::random_seed(interfaces::global_vars->tick_count+ interfaces::global_vars->tick_count+3351);
+		math::random_seed(interfaces::global_vars->tick_count + interfaces::global_vars->tick_count + interfaces::global_vars->tick_count + 3351);
 		this->best_yaw += math::random_float(-180.f, 180.f);
 	}
 
