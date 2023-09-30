@@ -42,9 +42,9 @@ private:
 	ImVec2 window_pos{};
 
 #if ALPHA
-	std::string prefix = xor_str("catflow (alpha)");
+	std::string prefix = xor_str("catflow [alpha]");
 #elif BETA
-	std::string prefix = xor_str("catflow (beta)");
+	std::string prefix = xor_str("catflow [beta]");
 #else
 	std::string prefix = xor_str("catflow");
 #endif
