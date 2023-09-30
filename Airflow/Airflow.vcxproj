@@ -50,8 +50,8 @@
     <TargetName>csgo-debug</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(SolutionDir)\Airflow\additionals\freetype\objs;$(SolutionDir)\Airflow\additionals\minhook;X:\Coding\Themida\ThemidaSDK\Lib\COFF;$(LibraryPath);X:\Coding\shared\lib\release</LibraryPath>
-    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(SolutionDir)\Airflow\additionals\freetype\include;X:\Coding\Themida\ThemidaSDK\Include\C;$(IncludePath);X:\Coding\shared\include;X:\Coding\Themida\C</IncludePath>
+    <LibraryPath>$(DXSDK_Dir)\Lib\x86;$(SolutionDir)\Airflow\additionals\freetype\objs;$(SolutionDir)\Airflow\additionals\minhook;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(DXSDK_Dir)\Include;$(SolutionDir)\Airflow\additionals\freetype\include;$(IncludePath)</IncludePath>
     <TargetName>csgo-release</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -106,7 +106,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableUAC>false</EnableUAC>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>SecureEngineSDK32.lib;crypto-46.lib;shared.lib;ssl-48.lib;tls-20.lib;zlibstatic.lib;ws2_32.lib;bcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <SubSystem>Windows</SubSystem>
     </Link>

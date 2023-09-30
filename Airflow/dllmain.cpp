@@ -14,7 +14,7 @@
 #include "base/tools/cheat_info.h"
 
 #ifndef _DEBUG
-#include "base/tools/connection/app_hack.h"
+// #include "base/tools/connection/app_hack.h"
 #endif
 
 #include "functions/features.h"
@@ -235,6 +235,7 @@ namespace cheat
 		RegisterHotKey(g_ctx.window, 100, 0, VK_RMENU);
 
 #ifndef _DEBUG
+		/*
 		g_cheat_info->user_token = (const char*)g_cheat_info->reserved;
 
 		network::app = std::make_shared< network::app_hack >();
@@ -250,7 +251,7 @@ namespace cheat
 			auto decoded = network::get_decoded_avatar();
 			if (decoded.size() > 0)
 				g_cheat_info->user_avatar = decoded;
-		}
+		}*/
 #endif
 
 		force_create_console;
