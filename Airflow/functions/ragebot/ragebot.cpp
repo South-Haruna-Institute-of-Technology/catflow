@@ -879,7 +879,7 @@ void c_rage_bot::predict_eye_pos()
 {
 	
 
-	//interfaces::debug_overlay->add_text_overlay(predicted_eye_pos, 0.1f, "PRED");
+	interfaces::debug_overlay->add_text_overlay(predicted_eye_pos, 0.1f, "PRED");
 }
 
 void c_rage_bot::proceed_aimbot()
