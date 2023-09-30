@@ -3,8 +3,8 @@
 extern unsigned char gamesense_sound[64700];
 extern const char tapSound[19298];
 extern unsigned char smallest_pixel_7[25600];
-extern unsigned char SFUIDisplay_Regular[170404];
-extern unsigned char SFUIDisplay_Bold[181484];
+extern unsigned char SFUIDisplay_Regular[146616];
+extern unsigned char SFUIDisplay_Bold[145860];
 extern unsigned int qo0icons_compressed_data[38584 / 4];
 extern unsigned char catLogo[520];
 extern unsigned char cheatLogo[1996];
@@ -20,7 +20,7 @@ extern unsigned char keyboard_icon[260];
 extern unsigned char bomb_indicator[464];
 extern unsigned char legit_icon[1924];
 extern unsigned char warning_icon[697];
-extern unsigned char SFUIDisplay_SemiBold[193080];
+extern unsigned char SFUIDisplay_SemiBold[146164];
 
 extern unsigned char pixel_font[17892];
 

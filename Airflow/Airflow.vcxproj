@@ -16,7 +16,7 @@
     <ProjectGuid>{476f7059-9bb6-4637-9a9d-303ed01d3edd}</ProjectGuid>
     <RootNamespace>gameproject</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>airflow V1</ProjectName>
+    <ProjectName>catflow</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

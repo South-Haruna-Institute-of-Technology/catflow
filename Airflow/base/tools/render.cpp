@@ -315,7 +315,7 @@ void __stdcall c_render::init(IDirect3DDevice9* device)
 		g_fonts.esp = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_Regular, sizeof(SFUIDisplay_Regular), 14.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
 		g_fonts.pixel_menu = io.Fonts->AddFontDefault(&cfg);
 
-		g_fonts.misc = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_SemiBold, sizeof(SFUIDisplay_SemiBold), 14.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
+		g_fonts.misc = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\simsunb.ttf", 14.f, &cfg, io.Fonts->GetGlyphRangesChineseFull());
 		g_fonts.bold = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_Bold, sizeof(SFUIDisplay_Bold), 10.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
 		g_fonts.bold2 = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_Bold, sizeof(SFUIDisplay_Bold), 14.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
 		g_fonts.bold_large = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_Bold, sizeof(SFUIDisplay_Bold), 26.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());

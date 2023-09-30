@@ -851,6 +851,8 @@ void c_menu::draw_watermark()
 
 	ImGui::PopStyleColor();
 	ImGui::End(false);*/
+
+
 }
 
 void c_menu::on_game_events(c_game_event* event)
