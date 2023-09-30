@@ -329,7 +329,7 @@ void c_anti_aim::slow_walk()
 {
 	if (!g_utils->on_ground())
 		return;
-	math::random_seed(interfaces::global_vars->tick_count+ interfaces::global_vars->tick_count+3351);
+	math::random_seed(interfaces::global_vars->tick_count+ interfaces::global_vars->tick_count+ interfaces::global_vars->tick_count +3351);
 	if (g_cfg.binds[sw_b].toggled)
 		g_movement->force_speed(g_movement->get_max_speed() * math::random_float( 0.28f,0.34f));
 }

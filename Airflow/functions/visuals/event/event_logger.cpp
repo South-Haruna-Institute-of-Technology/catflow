@@ -67,6 +67,7 @@ void c_event_logger::add_message(const std::string& text, int message_type, bool
 
 void c_event_logger::on_directx()
 {
+
 	if (!g_cfg.visuals.eventlog.enable)
 	{
 		if (!messages.empty())
@@ -86,7 +87,7 @@ void c_event_logger::on_directx()
 	{
 		auto prefix = this->get_message_prefix_type(messages[i].msgtype);
 
-		ImGui::PushFont(g_fonts.main);
+		ImGui::PushFont(g_fonts.bold);
 		auto text_size = ImGui::CalcTextSize(messages[i].text.c_str());
 		auto prefix_size = ImGui::CalcTextSize(prefix.first.c_str());
 		ImGui::PopFont();
@@ -100,24 +101,16 @@ void c_event_logger::on_directx()
 		if (messages[i].alpha > 0.f)
 		{
 			float animated_offset = text_size.x * (1.f - messages[i].alpha);
-			vector2d position = vector2d(10.f - animated_offset, 10.f + ((log_size.y + 8.f) * i));
-
-			// log body
-			g_render->filled_rect(position.x, position.y, log_size.x, log_size.y, color(25, 25, 25, 200 * messages[i].alpha), 4.f);
-			g_render->rect(position.x + 1.f, position.y, log_size.x, log_size.y, color(255, 255, 255, 12.75f * messages[i].alpha), 4.f, 1.f);
-
-			// left line
-			g_render->filled_rect(position.x, position.y, 4.f, log_size.y, prefix.second.new_alpha(255 * messages[i].alpha), 4.f, ImDrawCornerFlags_Left);
-
+			vector2d position = vector2d(10.f - animated_offset, 10.f + ((log_size.y + 4.f) * i));
 			// log prefix
-			g_render->string(position.x + 12.f, position.y + 4.f, color(255, 255, 255, messages[i].alpha * 255), 0, g_fonts.main, prefix.first.c_str());
+			g_render->string(position.x, position.y, color(255, 255, 255, messages[i].alpha * 255), 0, g_fonts.main, prefix.first.c_str());
 
 			// log separator
-			auto separator_pos = position.x + prefix_size.x + 19.f;
-			g_render->rect(separator_pos, position.y, 2.f, log_size.y, color(255, 255, 255, 12.75f * messages[i].alpha), 4.f, 2.f);
+			auto separator_pos = position.x + prefix_size.x + 8.f;
+			g_render->rect(separator_pos, position.y, 2.f, log_size.y, prefix.second.new_alpha(255 * messages[i].alpha), 4.f, 2.f);
 
 			// main log
-			g_render->string(separator_pos + 10.f, position.y + 4.f, color(255, 255, 255, 120.f * messages[i].alpha), 0, g_fonts.main, messages[i].text.c_str());
+			g_render->string(separator_pos + 8.f, position.y + 4.f, color(255, 255, 255, 200.f * messages[i].alpha), 0, g_fonts.main, messages[i].text.c_str());
 		}
 
 		if (messages[i].alpha <= 0.1f && time_expired)
