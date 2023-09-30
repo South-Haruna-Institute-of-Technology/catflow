@@ -312,15 +312,15 @@ void __stdcall c_render::init(IDirect3DDevice9* device)
 		g_fonts.main = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_SemiBold, sizeof(SFUIDisplay_SemiBold), 14.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
 		g_fonts.large = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_SemiBold, sizeof(SFUIDisplay_SemiBold), 36.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
 
-		g_fonts.esp = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_Regular, sizeof(SFUIDisplay_Regular), 14.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
-		g_fonts.pixel_menu = io.Fonts->AddFontDefault(&cfg);
+		g_fonts.esp = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\simhei.ttf", 14.f, &cfg, io.Fonts->GetGlyphRangesChineseFull());
+		//g_fonts.pixel_menu = io.Fonts->AddFontDefault(&cfg);
 
-		g_fonts.misc = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\simhei.ttf", 14.f, &cfg, io.Fonts->GetGlyphRangesChineseFull());
+		//g_fonts.misc = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\simhei.ttf", 14.f, &cfg, io.Fonts->GetGlyphRangesChineseFull());
 		g_fonts.bold = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_Bold, sizeof(SFUIDisplay_Bold), 12.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
 		g_fonts.bold2 = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_Bold, sizeof(SFUIDisplay_Bold), 18.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
 		g_fonts.bold_large = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_Bold, sizeof(SFUIDisplay_Bold), 24.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
 		g_fonts.dmg = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_SemiBold, sizeof(SFUIDisplay_SemiBold), 18.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
-		g_fonts.eventlog = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_SemiBold, sizeof(SFUIDisplay_SemiBold), 12.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
+		//g_fonts.eventlog = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_SemiBold, sizeof(SFUIDisplay_SemiBold), 12.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
 		g_fonts.weapon_icons = io.Fonts->AddFontFromMemoryCompressedTTF(qo0icons_compressed_data, 38581, 13.f, &cfg, icon_ranges);
 		g_fonts.weapon_icons_large = io.Fonts->AddFontFromMemoryCompressedTTF(qo0icons_compressed_data, 38581, 26.f, &cfg, icon_ranges);
 
