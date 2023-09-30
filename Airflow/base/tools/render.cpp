@@ -310,15 +310,15 @@ void __stdcall c_render::init(IDirect3DDevice9* device)
 
 	//	cfg.RasterizerFlags = ImGuiFreeType::RasterizerFlags::ForceAutoHint;
 		g_fonts.main = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_SemiBold, sizeof(SFUIDisplay_SemiBold), 14.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
-		g_fonts.large = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_SemiBold, sizeof(SFUIDisplay_SemiBold), 30.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
+		g_fonts.large = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_SemiBold, sizeof(SFUIDisplay_SemiBold), 36.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
 
 		g_fonts.esp = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_Regular, sizeof(SFUIDisplay_Regular), 14.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
 		g_fonts.pixel_menu = io.Fonts->AddFontDefault(&cfg);
 
-		g_fonts.misc = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\simsunb.ttf", 14.f, &cfg, io.Fonts->GetGlyphRangesChineseFull());
-		g_fonts.bold = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_Bold, sizeof(SFUIDisplay_Bold), 10.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
-		g_fonts.bold2 = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_Bold, sizeof(SFUIDisplay_Bold), 14.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
-		g_fonts.bold_large = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_Bold, sizeof(SFUIDisplay_Bold), 26.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
+		g_fonts.misc = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\simhei.ttf", 14.f, &cfg, io.Fonts->GetGlyphRangesChineseFull());
+		g_fonts.bold = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_Bold, sizeof(SFUIDisplay_Bold), 12.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
+		g_fonts.bold2 = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_Bold, sizeof(SFUIDisplay_Bold), 18.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
+		g_fonts.bold_large = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_Bold, sizeof(SFUIDisplay_Bold), 24.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
 		g_fonts.dmg = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_SemiBold, sizeof(SFUIDisplay_SemiBold), 18.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
 		g_fonts.eventlog = io.Fonts->AddFontFromMemoryTTF(SFUIDisplay_SemiBold, sizeof(SFUIDisplay_SemiBold), 12.f, &cfg, io.Fonts->GetGlyphRangesCyrillic());
 		g_fonts.weapon_icons = io.Fonts->AddFontFromMemoryCompressedTTF(qo0icons_compressed_data, 38581, 13.f, &cfg, icon_ranges);

@@ -583,7 +583,7 @@ void c_menu::draw_bomb_indicator()
 		list->AddText(window_pos + ImVec2(52.f, 10.f), color(255, 255, 255, 255 * alpha).as_imcolor(), str.c_str());
 		ImGui::PopFont();
 
-		ImGui::PushFont(g_fonts.misc);
+		ImGui::PushFont(g_fonts.dmg);
 		list->AddText(window_pos + ImVec2(text_size.x + 55, 10.f), color(255, 255, 255, 255 * alpha).as_imcolor(), xor_c("left"));
 
 		std::string str2 = "";
