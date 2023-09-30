@@ -201,19 +201,19 @@ void c_menu::draw_ui_background()
 
 	// image
 	auto image_size = ImVec2(14, 14);
-	auto image_pos_min = ImVec2((header_size.x / 2) - (image_size.x - 2), (header_size.y / 2) - (image_size.y - 2));
-	auto image_pos_max = ImVec2((header_size.x / 2) + (image_size.x - 2), (header_size.y / 2) + (image_size.y - 2));
+	auto image_pos_min = ImVec2((header_size.x / 5) - (image_size.x - 2), (header_size.y / 2) - (image_size.y - 2));
+	auto image_pos_max = ImVec2((header_size.x / 5) + (image_size.x - 2), (header_size.y / 2) + (image_size.y - 2));
 
 	auto clr = g_cfg.misc.ui_color.base();
 
-	ImGui::PushFont(g_fonts.dmg);
+	ImGui::PushFont(g_fonts.bold_large);
 	auto text_size = ImGui::CalcTextSize(this->prefix.c_str());
 
 	list->AddImage(
-		(void*)logo_texture, window_pos + image_pos_min - ImVec2(text_size.x - 18, 0.f), window_pos + image_pos_max - ImVec2(text_size.x - 18, 0.f), ImVec2(0, 0), ImVec2(1, 1));
+		(void*)logo_texture, window_pos + image_pos_min - ImVec2(text_size.x - 24, 0.f), window_pos + image_pos_max - ImVec2(text_size.x - 24, 0.f), ImVec2(0, 0), ImVec2(1, 1));
 
-	auto base_x = window_pos.x + image_pos_min.x - text_size.x + 18.f;
-	list->AddText(ImVec2(base_x + 30.f, window_pos.y + 13), color(255, 255, 255, 150.f * alpha).as_imcolor(), this->prefix.c_str());
+	auto base_x = window_pos.x + image_pos_min.x - text_size.x + 24.f;
+	list->AddText(ImVec2(base_x + 30.f, window_pos.y + 13), clr.as_imcolor(), this->prefix.c_str());
 	ImGui::PopFont();
 
 	// body

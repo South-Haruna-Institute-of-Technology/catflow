@@ -295,7 +295,7 @@ void c_menu::draw_spectators()
 
 	ImGui::SetNextWindowSize(window_size + ImVec2(0.f, 2.f));
 
-	ImGui::PushFont(g_fonts.main);
+	ImGui::PushFont(g_fonts.esp);
 	ImGui::SetNextWindowBgAlpha(0.f);
 	ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0.f, 0.f, 0.f, 0.f));
 	ImGui::Begin(xor_c("##spec_window"), &opened, misc_ui_flags);
@@ -690,11 +690,10 @@ void c_menu::draw_watermark()
 
 			auto base_offset = ImVec2{ base_window_pos.x + 10.f, base_window_pos.y + 7.f };
 
-			auto clr = g_cfg.misc.ui_color.base();
 			list->AddImage((void*)logo_texture, base_offset, base_offset + image_size, ImVec2(0, 0), ImVec2(1, 1), ImColor(255, 255, 255));
 
 			auto watermark_offset = base_offset + ImVec2{ image_size.x + 6.f, -0.5f };
-			list->AddText(watermark_offset, ImColor(255, 255, 255, 255), this->prefix.c_str());
+			list->AddText(watermark_offset, ImColor(180, 220, 235, 255), this->prefix.c_str());
 		}
 
 		// right side
