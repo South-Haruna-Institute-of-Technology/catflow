@@ -720,7 +720,7 @@ void c_menu::draw_ui_items()
 						auto dmg_str = weapon_settings.mindamage == 100 ? xor_c("HP") : weapon_settings.mindamage > 100 ? xor_c("HP + ") + std::to_string(weapon_settings.mindamage - 100) : xor_c("%dHP");
 						auto override_str = weapon_settings.damage_override == 100 ? xor_c("HP") : weapon_settings.damage_override > 100 ? xor_c("HP + ") + std::to_string(weapon_settings.damage_override - 100) : xor_c("%dHP");
 
-				//		multi_combo(xor_c("Skip hitchance"), weapon_settings.hitchance_skips, { xor_str("Low spread"), xor_str("DT / Still") });
+						//multi_combo(xor_c("Skip hitchance"), weapon_settings.hitchance_skips, { xor_str("Low spread"), xor_str("DT / Still") });sobviously only a switcher here
 
 						slider_int(xor_c("Hitchance"), &weapon_settings.hitchance, 0, 100, xor_c("%d%%"));
 						checkbox(xor_c("Strict mode"), &weapon_settings.strict_mode);
