@@ -16,7 +16,6 @@
 #ifdef _DEBUG
 
 #endif
-
 void c_local_visuals::thirdperson()
 {
 	if (!g_ctx.in_game)
@@ -62,7 +61,6 @@ void c_local_visuals::thirdperson()
 		math::angle_to_vectors(offset, forward);
 
 		offset.z = g_cfg.misc.thirdperson_dist;
-
 		bool fd = std::abs(interfaces::global_vars->cur_time - last_duck_time) <= 0.2f;
 
 		auto origin = fd ? g_ctx.local->get_render_origin() + vector3d(0.0f, 0.0f, interfaces::game_movement->get_player_view_offset(false).z + 0.064f) : g_ctx.local->get_render_origin() + g_ctx.local->view_offset();
@@ -74,9 +72,9 @@ void c_local_visuals::thirdperson()
 
 		if (tr.fraction <= 0.5f)
 			g_ctx.alpha_amt *= tr.fraction;
-
 		offset.z *= tr.fraction;
-
+		if (offset.z <= 0.f)
+			interfaces::input->camera_in_third_person = false;
 		interfaces::input->camera_offset = { offset.x, offset.y, offset.z };
 	}
 }
