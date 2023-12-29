@@ -232,7 +232,7 @@ namespace config
 
 				save_uint(rage[sub], xor_c("quick_stop_options"), default_config.rage.weapon[i].quick_stop_options);
 				save_uint(rage[sub], xor_c("hitboxes"), default_config.rage.weapon[i].hitboxes);
-			//	save_uint(rage[sub], xor_c("hitchance_skips"), default_config.rage.weapon[i].hitchance_skips);
+				save_uint(rage[sub], xor_c("hitchance_skips"), default_config.rage.weapon[i].hitchance_skips);
 			}
 		}
 
@@ -560,7 +560,7 @@ namespace config
 
 				save_uint(rage[sub], xor_c("quick_stop_options"), g_cfg.rage.weapon[i].quick_stop_options);
 				save_uint(rage[sub], xor_c("hitboxes"), g_cfg.rage.weapon[i].hitboxes);
-				//save_uint(rage[sub], xor_c("hitchance_skips"), g_cfg.rage.weapon[i].hitchance_skips);
+				save_uint(rage[sub], xor_c("hitchance_skips"), g_cfg.rage.weapon[i].hitchance_skips);
 			}
 		}
 
@@ -899,7 +899,7 @@ namespace config
 
 				load_uint(rage[sub], xor_c("quick_stop_options"), g_cfg.rage.weapon[i].quick_stop_options);
 				load_uint(rage[sub], xor_c("hitboxes"), g_cfg.rage.weapon[i].hitboxes);
-			//	load_uint(rage[sub], xor_c("hitchance_skips"), g_cfg.rage.weapon[i].hitchance_skips);
+				load_uint(rage[sub], xor_c("hitchance_skips"), g_cfg.rage.weapon[i].hitchance_skips);
 			}
 		}
 

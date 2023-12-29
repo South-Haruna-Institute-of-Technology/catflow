@@ -11,7 +11,8 @@ namespace rage_tools
 
 	rage_weapon_t zeus_config = { true, false, false, 40, 101, 101, 80, 80, 0, 0, 0, 1, 0, {} };
 
-	constexpr int total_seeds = 255;
+	constexpr int total_seeds = 128;//255
+	constexpr int wall_seeds = 48;//somebody told me it is a "optimiz",i shall try it after i considered where i should put a "if"
 
 	vector2d calc_spread_angle(int bullets, float recoil_index, int i)
 	{
@@ -462,16 +463,36 @@ namespace rage_tools
 			if (valid_accuracy)
 				++chance_ticks;
 
-			if (chance_ticks >= 5)
+			if (chance_ticks >= 7)//originnally5,why not consider in backtrack more condition?
 			{
 				*out_chance = amount;
 				chance_ticks = 0;
 				return true;
 			}
 		}
-
+		//
 		int hits = 0;
+		int awhits = 0;
 		for (int i = 0; i < total_seeds; ++i)
+		{
+			auto spread_angle = calc_spread_angle(weapon_info->bullets, g_ctx.weapon->recoil_index(), i);
+
+			auto direction = forward + (right * spread_angle.x) + (up * spread_angle.y);
+			direction = direction.normalized();
+
+			auto end = start + direction * range;
+#ifdef _DEBUG
+			if (debug_hitchance)
+			{
+				vector2d scr_end;
+				if (g_render->world_to_screen(end, scr_end))
+					spread_points.emplace_back(scr_end);
+			}
+#endif
+			if (can_hit_hitbox(start, end, player, point.hitbox, point.record))
+				++hits;
+		}
+		for (int i = 0; i < wall_seeds; ++i)
 		{
 			auto spread_angle = calc_spread_angle(weapon_info->bullets, g_ctx.weapon->recoil_index(), i);
 
@@ -496,20 +517,17 @@ namespace rage_tools
 
 					auto awall = g_auto_wall->fire_bullet(g_ctx.local, player, g_ctx.weapon_info, g_ctx.weapon->is_taser(), start, end);
 					if (awall.dmg > 0)
-						++hits;
-
+						++awhits;
 					g_rage_bot->restore(player);
 				}
-				else
-					++hits;
 			}
 		}
 
-		*out_chance = (float)hits / (float)total_seeds;
+		*out_chance = (float)hits / (float)total_seeds;//strict
 
 		bool valid_weapon = g_ctx.weapon->is_auto_sniper() || g_ctx.weapon->is_heavy_pistols();
 
-		if (!g_rage_bot->weapon_config.strict_mode && g_utils->on_ground() && valid_weapon && point.center && !point.limbs)
+		if (!g_rage_bot->weapon_config.strict_mode && valid_weapon && point.center && !point.limbs)// g_utils->on_ground() &&
 		{
 			static float old_hitchance = 0.f;
 
@@ -528,7 +546,7 @@ namespace rage_tools
 			}
 		}
 
-		return ((float)hits / (float)total_seeds) >= amount;
+		return ((float)hits / (float)total_seeds) >= amount|| ((float)awhits / (float)wall_seeds) >= amount;
 	}
 
 	inline float get_dynamic_scale(vector3d& point, const float& hitbox_radius)

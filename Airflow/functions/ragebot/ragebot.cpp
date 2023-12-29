@@ -587,7 +587,7 @@ void c_rage_bot::zeus_bot()
 			g_ctx.eye_position = g_engine_prediction->get_eye_pos(aim_angle);
 
 			bool able_to_shoot = g_utils->is_able_to_shoot(true);
-			bool accuracy_valid = rage_tools::is_accuracy_valid(nearest_player, best_point, 0.6f, &best_point.hitchance);
+			bool accuracy_valid = rage_tools::is_accuracy_valid(nearest_player, best_point, 0.33f, &best_point.hitchance);//puzzled 0.6f,try0.33and test in bot seems no differ??
 			if (accuracy_valid && able_to_shoot && this->last_shot_cmd != g_ctx.cmd->command_number)
 			{
 				if (g_ctx.lagcomp)
