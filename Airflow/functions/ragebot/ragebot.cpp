@@ -588,6 +588,7 @@ void c_rage_bot::zeus_bot()
 
 			bool able_to_shoot = g_utils->is_able_to_shoot(true);
 			bool accuracy_valid = rage_tools::is_accuracy_valid(nearest_player, best_point, 0.33f, &best_point.hitchance);//puzzled 0.6f,try0.33and test in bot seems no differ??
+
 			if (accuracy_valid && able_to_shoot && this->last_shot_cmd != g_ctx.cmd->command_number)
 			{
 				if (g_ctx.lagcomp)
@@ -760,7 +761,7 @@ void c_rage_bot::knife_bot()
 
 void force_scope()
 {
-	bool able_to_zoom = g_ctx.predicted_curtime >= g_ctx.weapon->next_secondary_attack();
+	bool able_to_zoom = g_ctx.predicted_curtime + 140 >= g_ctx.weapon->next_secondary_attack();//add in fakelag consideration nut idk if is useless
 
 	if (able_to_zoom && g_rage_bot->weapon_config.auto_scope && g_ctx.weapon->zoom_level() < 1 && g_utils->on_ground() && g_ctx.weapon->is_sniper())
 		g_ctx.cmd->buttons |= in_attack2;

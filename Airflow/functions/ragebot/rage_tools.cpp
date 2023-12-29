@@ -393,7 +393,8 @@ namespace rage_tools
 
 		if (cvars::weapon_accuracy_nospread->get_int() > 0 || amount <= 0.f)
 			return true;
-
+		if (g_rage_bot->weapon_config.hitchance_skips & 1 && g_engine_prediction->predicted_inaccuracy<=0.0133f)//idk if this amount is lower enough for it working
+			return true;
 		auto model = interfaces::model_info->get_studio_model(player->get_model());
 		if (!model)
 			return false;
@@ -463,7 +464,7 @@ namespace rage_tools
 			if (valid_accuracy)
 				++chance_ticks;
 
-			if (chance_ticks >= 7)//originnally5,why not consider in backtrack more condition?
+			if (chance_ticks >= 6)//originnally5,why not consider in backtrack more condition?
 			{
 				*out_chance = amount;
 				chance_ticks = 0;
@@ -492,33 +493,36 @@ namespace rage_tools
 			if (can_hit_hitbox(start, end, player, point.hitbox, point.record))
 				++hits;
 		}
-		for (int i = 0; i < wall_seeds; ++i)
+		for (int i = 1; i <= 6; ++i)
 		{
-			auto spread_angle = calc_spread_angle(weapon_info->bullets, g_ctx.weapon->recoil_index(), i);
+			for (auto j = 0; j < 8; ++j)//watch ragebot.h line 166
+			{
+				auto spread_angle = calc_spread_angle(weapon_info->bullets, g_ctx.weapon->recoil_index(), i);
 
-			auto direction = forward + (right * spread_angle.x) + (up * spread_angle.y);
-			direction = direction.normalized();
+				auto direction = forward + (right * spread_angle.x) + (up * spread_angle.y);
+				direction = direction.normalized();
 
-			auto end = start + direction * range;
+				auto end = start + direction * range;
 #ifdef _DEBUG
-			if (debug_hitchance)
-			{
-				vector2d scr_end;
-				if (g_render->world_to_screen(end, scr_end))
-					spread_points.emplace_back(scr_end);
-			}
-#endif
-			if (can_hit_hitbox(start, end, player, point.hitbox, point.record))
-			{
-				if (!point.center)
+				if (debug_hitchance)
 				{
-					g_rage_bot->store(player);
-					g_rage_bot->set_record(player, point.record);
+					vector2d scr_end;
+					if (g_render->world_to_screen(end, scr_end))
+						spread_points.emplace_back(scr_end);
+				}
+#endif
+				if (can_hit_hitbox(start, end, player, point.hitbox, point.record))
+				{
+					if (!point.center)
+					{
+						g_rage_bot->store(player);
+						g_rage_bot->set_record(player, point.record);
 
-					auto awall = g_auto_wall->fire_bullet(g_ctx.local, player, g_ctx.weapon_info, g_ctx.weapon->is_taser(), start, end);
-					if (awall.dmg > 0)
-						++awhits;
-					g_rage_bot->restore(player);
+						auto awall = g_auto_wall->fire_bullet(g_ctx.local, player, g_ctx.weapon_info, g_ctx.weapon->is_taser(), start, end);
+						if (awall.dmg > 0)
+							++awhits;
+						g_rage_bot->restore(player);
+					}
 				}
 			}
 		}
