@@ -7,7 +7,7 @@ extern unsigned char SFUIDisplay_Regular[146616];
 extern unsigned char SFUIDisplay_Bold[145860];
 extern unsigned int qo0icons_compressed_data[38584 / 4];
 extern unsigned char catLogo[520];
-extern unsigned char cheatLogo[1996];
+extern unsigned char cheatLogo[1984];
 
 extern unsigned char airflow_tab_icon[5538];
 extern unsigned char rage_icon[366];
