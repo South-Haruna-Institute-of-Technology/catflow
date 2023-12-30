@@ -93,6 +93,8 @@ void c_local_visuals::thirdperson()
 		current_fraction = math::interpolate(current_fraction, tr.fraction, interfaces::global_vars->interval_per_tick * 10.0f);
 		if (current_fraction <= 0.5f)
 			g_ctx.alpha_amt *= current_fraction;
+		else if (angles.x < -30.f)
+			g_ctx.alpha_amt *= (std::abs(angles.x+89.f)/59.f);//genshin like anti-pantz:)
 		angles.z = distance * current_fraction;
 
 		interfaces::input->camera_in_third_person = current_fraction > 0.05f;
