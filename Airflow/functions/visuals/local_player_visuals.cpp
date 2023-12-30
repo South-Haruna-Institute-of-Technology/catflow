@@ -18,6 +18,7 @@
 #endif
 void c_local_visuals::thirdperson()
 {
+	static auto current_fraction = 0.0f;
 	if (!g_ctx.in_game)
 		return;
 
@@ -29,7 +30,11 @@ void c_local_visuals::thirdperson()
 		if (alive)
 		{
 			if (!interfaces::input->camera_in_third_person)
+			{
+				current_fraction = 0.0f;
 				interfaces::input->camera_in_third_person = true;
+			}
+
 		}
 		else
 		{
@@ -54,28 +59,45 @@ void c_local_visuals::thirdperson()
 
 	if (interfaces::input->camera_in_third_person)
 	{
-		vector3d offset{};
-		interfaces::engine->get_view_angles(offset);
+		auto distance = (float)g_cfg.misc.thirdperson_dist;
 
-		vector3d forward;
-		math::angle_to_vectors(offset, forward);
+		vector3d angles;
+		interfaces::engine->get_view_angles(angles);
 
-		offset.z = g_cfg.misc.thirdperson_dist;
+		vector3d inverse_angles;
+		interfaces::engine->get_view_angles(inverse_angles);
+
+		inverse_angles.z = distance;
+
+		vector3d forward, right, up;
+		math::angle_to_vectors(inverse_angles, forward, right, up);
+
 		bool fd = std::abs(interfaces::global_vars->cur_time - last_duck_time) <= 0.2f;
 
 		auto origin = fd ? g_ctx.local->get_render_origin() + vector3d(0.0f, 0.0f, interfaces::game_movement->get_player_view_offset(false).z + 0.064f) : g_ctx.local->get_render_origin() + g_ctx.local->view_offset();
 
+		auto offset = origin + forward * -distance + right + up;
+
+
+		angles.z = g_cfg.misc.thirdperson_dist;
+
 		c_trace_filter_world_and_props_only filter{};
 		c_game_trace tr{};
 
-		interfaces::engine_trace->trace_ray(ray_t(origin, origin - (forward * offset.z), { -16.f, -16.f, -16.f }, { 16.f, 16.f, 16.f }), mask_npcworldstatic, (i_trace_filter*)&filter, &tr);
+		interfaces::engine_trace->trace_ray(ray_t(origin, offset, { -16.f, -16.f, -16.f }, { 16.f, 16.f, 16.f }), mask_npcworldstatic, (i_trace_filter*)&filter, &tr);
 
-		if (tr.fraction <= 0.5f)
-			g_ctx.alpha_amt *= tr.fraction;
-		offset.z *= tr.fraction;
-		if (offset.z <= 0.f)
-			interfaces::input->camera_in_third_person = false;
-		interfaces::input->camera_offset = { offset.x, offset.y, offset.z };
+		if (current_fraction > tr.fraction)
+			current_fraction = tr.fraction;
+		else if (current_fraction > 0.9999f)
+			current_fraction = 1.0f;
+		current_fraction = math::interpolate(current_fraction, tr.fraction, interfaces::global_vars->interval_per_tick * 10.0f);
+		if (current_fraction <= 0.5f)
+			g_ctx.alpha_amt *= current_fraction;
+		angles.z = distance * current_fraction;
+
+		interfaces::input->camera_in_third_person = current_fraction > 0.05f;
+		interfaces::input->camera_offset = { angles.x, angles.y, angles.z };
+
 	}
 }
 
